@@ -25,4 +25,25 @@ train_pos = train_pos['text']
 train_neg = train[ train['sentiment'] == 'Negative']
 train_neg = train_neg['text']
 
-print(train_neg)
+tweets = []
+stopwords_set = set(stopwords.words("english"))
+
+for index, row in train.iterrows():
+    words_filtered = [e.lower() for e in row.text.split() if len(e) >= 3]
+    print(row.text.split())
+    print(words_filtered)
+    print("\n")
+    # words_cleaned = [word for word in words_filtered
+    #     if 'http' not in word
+    #     and not word.startswith('@')
+    #     and not word.startswith('#')
+    #     and word != 'RT']
+    # words_without_stopwords = [word for word in words_cleaned if not word in stopwords_set]
+    # tweets.append((words_without_stopwords, row.sentiment))
+    break
+
+
+test_pos = test[ test['sentiment'] == 'Positive']
+test_pos = test_pos['text']
+test_neg = test[ test['sentiment'] == 'Negative']
+test_neg = test_neg['text']
