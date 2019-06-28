@@ -47,3 +47,29 @@ test_pos = test[ test['sentiment'] == 'Positive']
 test_pos = test_pos['text']
 test_neg = test[ test['sentiment'] == 'Negative']
 test_neg = test_neg['text']
+
+
+# Extracting word features
+def get_words_in_tweets(tweets):
+    all = []
+    for (words, sentiment) in tweets:
+        all.extend(words)
+    return all
+
+def get_word_features(wordlist):
+    wordlist = nltk.FreqDist(wordlist)
+    features = wordlist.keys()
+    return features
+w_features = get_word_features(get_words_in_tweets(tweets))
+
+def extract_features(document):
+    document_words = set(document)
+    features = {}
+    for word in w_features:
+        features['contains(%s)' % word] = (word in document_words)
+    return features
+
+
+# Training the Naive Bayes classifier
+training_set = nltk.classify.apply_features(extract_features,tweets)
+classifier = nltk.NaiveBayesClassifier.train(training_set)
