@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split # function for splitting da
 from sklearn.svm import LinearSVC
 import nltk
 from nltk.corpus import stopwords
-from nltk.classify import SklearnClassifier
+#from nltk.classify import SklearnClassifier
 
 import matplotlib.pyplot as plt
 'exec(%matplotlib inline)'
@@ -120,7 +120,7 @@ for obj in test_neg:
         falsePos+=1
         if(count<20):
             count+=1
-            wrongNegs.append(processedObj)
+            wrongNeg.append(processedObj)
         
 #Detecting Positives
 wrongPos = []
@@ -134,7 +134,7 @@ for obj in test_pos:
         falseNeg+=1
         if(count<20):
             count+=1
-            wrongNegs.append(processedObj)
+            wrongPos.append(processedObj)
 
 ###
 
